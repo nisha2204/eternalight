@@ -1,0 +1,15 @@
+const express = require('express')
+const app = express()
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+const helmet = require('helmet')
+app.use(helmet())
+console.log("started db connectio")
+require('./db')
+console.log("db connected")
+const routes = require('./notes.controller')
+console.log("hello")
+app.use('/', routes)
+
+module.exports = app
